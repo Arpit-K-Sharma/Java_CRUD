@@ -3,9 +3,9 @@ package com.studentcrudapp.controller;
 import com.studentcrudapp.model.Student;
 import com.studentcrudapp.service.StudentService;
 
-import jakarta.annotation.PostConstruct;
-import jakarta.faces.bean.ManagedBean;
-import jakarta.faces.bean.ViewScoped;
+import javax.annotation.PostConstruct;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import java.io.Serializable;
 import java.util.*;
 
