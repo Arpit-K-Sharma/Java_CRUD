@@ -1,7 +1,7 @@
 package com.studentcrudapp.service;
 
 import com.studentcrudapp.model.Student;
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.List;
 public class StudentService {
 

@@ -1,6 +1,6 @@
 package com.studentcrudapp.model;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "student")
