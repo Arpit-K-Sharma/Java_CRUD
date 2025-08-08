@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Student CRUD</title>
+</h:head>
+<h:body>
+    <h:form>
+        <h3>Add / Edit Student</h3>
+        <h:panelGrid columns="2" columnClasses="label,value">
+            <h:outputLabel for="name" value="Name:"/>
+            <h:inputText id="name" value="#{studentBean.student.name}" required="true"/>
+
+            <h:outputLabel for="address" value="Address:"/>
+            <h:inputText id="address" value="#{studentBean.student.address}" required="true"/>
+
+            <h:outputLabel for="class" value="Class:"/>
+            <h:selectOneMenu id="class" value="#{studentBean.student.studentClass}">
+                <f:selectItem itemLabel="Select" itemValue=""/>
+                <f:selectItems value="#{studentBean.classList}"/>
+                <f:ajax listener="#{studentBean.onClassChange}" render="subject"/>
+            </h:selectOneMenu>
+
+            <h:outputLabel for="subject" value="Subject:"/>
+            <h:selectOneMenu id="subject" value="#{studentBean.student.subject}">
+                <f:selectItem itemLabel="Select" itemValue=""/>
+                <f:selectItems value="#{studentBean.subjectList}"/>
+            </h:selectOneMenu>
+        </h:panelGrid>
+
+        <h:commandButton value="Save" action="#{studentBean.save}"/>
+    </h:form>
+
+    <h3>Students</h3>
+    <h:dataTable value="#{studentBean.studentList}" var="s" border="1">
+        <h:column>
+            <f:facet name="header">Name</f:facet>
+            #{s.name}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Address</f:facet>
+            #{s.address}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Class</f:facet>
+            #{s.studentClass}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Subject</f:facet>
+            #{s.subject}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Actions</f:facet>
+            <h:commandLink value="Edit" action="#{studentBean.edit(s)}" />
+            <h:outputText value=" | " />
+            <h:commandLink value="Delete" action="#{studentBean.delete(s)}" immediate="true" />
+        </h:column>
+    </h:dataTable>
+</h:body>
+</html>

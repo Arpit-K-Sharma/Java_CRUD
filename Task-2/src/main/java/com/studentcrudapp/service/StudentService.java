@@ -1,56 +1,40 @@
 package com.studentcrudapp.service;
 
 import com.studentcrudapp.model.Student;
-import javax.persistence.*;
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Named;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.List;
+
+@Named
+@ApplicationScoped
 public class StudentService {
 
-    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("studentPU");
+    @PersistenceContext
+    private EntityManager em;
+
 
     public void save(Student student) {
-        EntityManager em = emf.createEntityManager();
-        try {
-            em.getTransaction().begin();
-            if (student.getId() == 0) {
-                em.persist(student);
-            } else {
-                em.merge(student);
-            }
-            em.getTransaction().commit();
-        } finally {
-            em.close();
+        if (student.getId() == 0) {
+            em.persist(student);
+        } else {
+            em.merge(student);
         }
     }
 
     public void delete(Student student) {
-        EntityManager em = emf.createEntityManager();
-        try {
-            em.getTransaction().begin();
-            Student toDelete = em.find(Student.class, student.getId());
-            if (toDelete != null) {
-                em.remove(toDelete);
-            }
-            em.getTransaction().commit();
-        } finally {
-            em.close();
+        Student toDelete = em.find(Student.class, student.getId());
+        if (toDelete != null) {
+            em.remove(toDelete);
         }
     }
 
     public List<Student> getAll() {
-        EntityManager em = emf.createEntityManager();
-        try {
-            return em.createQuery("SELECT s FROM Student s", Student.class).getResultList();
-        } finally {
-            em.close();
-        }
+        return em.createQuery("SELECT s FROM Student s", Student.class).getResultList();
     }
 
     public Student findById(int id) {
-        EntityManager em = emf.createEntityManager();
-        try {
-            return em.find(Student.class, id);
-        } finally {
-            em.close();
-        }
+        return em.find(Student.class, id);
     }
 }

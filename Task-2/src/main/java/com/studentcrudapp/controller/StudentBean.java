@@ -5,6 +5,7 @@ import com.studentcrudapp.service.StudentService;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import java.io.Serializable;
 import java.util.*;
@@ -13,13 +14,16 @@ import java.util.*;
 @ViewScoped
 public class StudentBean implements Serializable {
 
+    public StudentBean() {}
+
     private Student student = new Student();
     private List<Student> studentList = new ArrayList<>();
     private Map<String, List<String>> classSubjectMap = new HashMap<>();
     private List<String> classList = new ArrayList<>();
     private List<String> subjectList = new ArrayList<>();
 
-    private StudentService service = new StudentService();
+    @ManagedProperty(value="#{studentService}")
+    private StudentService service;
 
     @PostConstruct
     public void init() {
@@ -96,5 +100,13 @@ public class StudentBean implements Serializable {
 
     public void setClassSubjectMap(Map<String, List<String>> classSubjectMap) {
         this.classSubjectMap = classSubjectMap;
+    }
+
+    public StudentService getService() {
+        return service;
+    }
+
+    public void setService(StudentService service) {
+        this.service = service;
     }
 }
