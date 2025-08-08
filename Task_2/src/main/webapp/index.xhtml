@@ -6,6 +6,8 @@
     <title>Student CRUD</title>
 </h:head>
 <h:body>
+
+    <!-- Form for Adding / Editing -->
     <h:form>
         <h3>Add / Edit Student</h3>
         <h:panelGrid columns="2" columnClasses="label,value">
@@ -32,30 +34,34 @@
         <h:commandButton value="Save" action="#{studentBean.save}"/>
     </h:form>
 
-    <h3>Students</h3>
-    <h:dataTable value="#{studentBean.studentList}" var="s" border="1">
-        <h:column>
-            <f:facet name="header">Name</f:facet>
-            #{s.name}
-        </h:column>
-        <h:column>
-            <f:facet name="header">Address</f:facet>
-            #{s.address}
-        </h:column>
-        <h:column>
-            <f:facet name="header">Class</f:facet>
-            #{s.studentClass}
-        </h:column>
-        <h:column>
-            <f:facet name="header">Subject</f:facet>
-            #{s.subject}
-        </h:column>
-        <h:column>
-            <f:facet name="header">Actions</f:facet>
-            <h:commandLink value="Edit" action="#{studentBean.edit(s)}" />
-            <h:outputText value=" | " />
-            <h:commandLink value="Delete" action="#{studentBean.delete(s)}" immediate="true" />
-        </h:column>
-    </h:dataTable>
+    <!-- Form for Listing + Actions -->
+    <h:form>
+        <h3>Students</h3>
+        <h:dataTable value="#{studentBean.studentList}" var="s" border="1">
+            <h:column>
+                <f:facet name="header">Name</f:facet>
+                #{s.name}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Address</f:facet>
+                #{s.address}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Class</f:facet>
+                #{s.studentClass}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Subject</f:facet>
+                #{s.subject}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Actions</f:facet>
+                <h:commandLink value="Edit" action="#{studentBean.edit(s)}" />
+                <h:outputText value=" | " />
+                <h:commandLink value="Delete" action="#{studentBean.delete(s)}" immediate="true" />
+            </h:column>
+        </h:dataTable>
+    </h:form>
+
 </h:body>
 </html>

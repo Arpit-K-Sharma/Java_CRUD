@@ -36,6 +36,7 @@ public class StudentBean implements Serializable {
         studentList = service.getAll();
     }
 
+
     public void save() {
         service.save(student);
         student = new Student(); // clear form
