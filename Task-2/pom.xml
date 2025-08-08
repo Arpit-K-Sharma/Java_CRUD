@@ -20,16 +20,9 @@
     <!-- Java EE 7 APIs provided by GlassFish 4 -->
     <dependency>
       <groupId>javax</groupId>
-      <artifactId>javaee-web-api</artifactId>
+      <artifactId>javaee-api</artifactId>
       <version>7.0</version>
       <scope>provided</scope>
-    </dependency>
-
-    <!-- PrimeFaces compatible with JSF 2.2 -->
-    <dependency>
-      <groupId>org.primefaces</groupId>
-      <artifactId>primefaces</artifactId>
-      <version>7.0</version>
     </dependency>
 
     <!-- JPA provider -->
@@ -44,6 +37,13 @@
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
       <version>8.0.33</version>
+    </dependency>
+
+    <!-- PrimeFaces UI -->
+    <dependency>
+      <groupId>org.primefaces</groupId>
+      <artifactId>primefaces</artifactId>
+      <version>8.0</version>
     </dependency>
 
   </dependencies>
